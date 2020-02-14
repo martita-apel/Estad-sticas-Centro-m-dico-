@@ -1,0 +1,50 @@
+body {
+  background-color: skyblue;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  letter-spacing: 8px;
+  text-align: center;
+  color: white;
+  padding: 30px;
+}
+
+.especialidades {
+  display: flex;
+  justify-content: space-around;
+}
+
+.radiologia,
+.traumatologia,
+.dental {
+  background-color: white;
+  width: 30%;
+  height: 320px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  padding: 5px 0;
+}
+
+@media only screen and (max-width: 756px) {
+  .especialidades {
+    display: block;
+  }
+  .radiologia,
+  .traumatologia,
+  .dental {
+    width: 50%;
+    margin: 20px auto;
+  }
+}
