@@ -37,30 +37,8 @@ var radiologia = [
   }
 ];
 
-var longitud = radiologia.length;
-var primera = radiologia[0];
-var ultima = radiologia[longitud - 1];
-
-document.getElementById("longitud_r").innerHTML =
-  "La cantidad de pacientes en <i>Radiología<i> son: " + longitud;
-
-document.getElementById("primera_r").innerHTML =
-  "<b>Primer paciente: </b>" +
-  "<br>" +
-  primera.paciente +
-  "<br>" +
-  primera.rut +
-  " - " +
-  primera.prevision;
-
-document.getElementById("ultima_r").innerHTML =
-  "<b>Último paciente: </b>" +
-  "<br>" +
-  ultima.paciente +
-  "<br>" +
-  ultima.rut +
-  " - " +
-  ultima.prevision;
+radiologia.pop();
+radiologia.shift();
 
 // Traumatología
 var traumatologia = [
@@ -115,30 +93,65 @@ var traumatologia = [
   }
 ];
 
-var longitud = traumatologia.length;
-var primera = traumatologia[0];
-var ultima = traumatologia[longitud - 1];
+traumatologia.push(
+  {
+    hora: "09:00",
+    especialista: "René Poblete",
+    paciente: "Ana Gellona",
+    rut: "13123329-7",
+    prevision: "Isapre"
+  },
+  {
+    hora: "09:30",
+    especialista: "María Solar",
+    paciente: "Ramiro Andrade",
+    rut: "12221451-K",
+    prevision: "Fonasa"
+  },
+  {
+    hora: "10:00",
+    especialista: "Raúl Loyola",
+    paciente: "Carmen Isla",
+    rut: "10112348-3",
+    prevision: "Isapre"
+  },
+  {
+    hora: "10:30",
+    especialista: "Antonio Larenas",
+    paciente: "Pablo Loayza",
+    rut: "13453234-1",
+    prevision: "Isapre"
+  },
+  {
+    hora: "12:00",
+    especialista: "Matías Aravena",
+    paciente: "Susana Poblete",
+    rut: "14345656-6",
+    prevision: "Fonasa"
+  }
+);
 
-document.getElementById("longitud_t").innerHTML =
-  "La cantidad de pacientes en <i>Traumatología<i> son: " + longitud;
+var previsionF = "Fonasa";
+var previsionI = "Isapre";
 
-document.getElementById("primera_t").innerHTML =
-  "<b>Primer paciente: </b>" +
-  "<br>" +
-  primera.paciente +
-  "<br>" +
-  primera.rut +
-  " - " +
-  primera.prevision;
+var prevision_final = traumatologia.map(function(objeto) {
+  if (objeto.prevision == previsionF) {
+    objeto.prevision = previsionI;
+  } else if (objeto.prevision == previsionI) {
+    objeto.prevision = previsionF;
+  }
+  return objeto;
+});
 
-document.getElementById("ultima_t").innerHTML =
-  "<b>Último paciente: </b>" +
-  "<br>" +
-  ultima.paciente +
-  "<br>" +
-  ultima.rut +
-  " - " +
-  ultima.prevision;
+prevision_final.forEach(function(objeto) {
+  document.getElementById("traum_prev").innerHTML +=
+    "<li class=" +
+    "tram" +
+    ">" +
+    [objeto.prevision, objeto.rut].join("; ") +
+    "<br>" +
+    "</li>";
+});
 
 // dental
 var dental = [
@@ -186,30 +199,47 @@ var dental = [
   }
 ];
 
-var longitud = dental.length;
-var primera = dental[0];
-var ultima = dental[longitud - 1];
+var datos = [];
+var valor = [];
+for (let i = 0; i < dental.length; i++) {
+  valor[0] = dental[i].hora;
+  valor[1] = dental[i].especialista;
+  valor[2] = dental[i].paciente;
+  valor[3] = dental[i].rut;
+  valor[4] = dental[i].prevision;
+  datos.push(valor);
+  valor = [];
+}
 
-document.getElementById("longitud_d").innerHTML =
-  "La cantidad de pacientes en <i>Dental<i> son: " + longitud;
+for (let j = 0; j < datos.length; j++) {
+  document.getElementById("dental_lista").innerHTML +=
+    "<li class=" + "hola" + ">" + datos[j].join(" - ") + "</li>";
+}
 
-document.getElementById("primera_d").innerHTML =
-  "<b>Primer paciente: </b>" +
-  "<br>" +
-  primera.paciente +
-  "<br>" +
-  primera.rut +
-  " - " +
-  primera.prevision;
+// Lista total de pacientes (Radiología, Traumatologia y Dental)
+var total_pacientes = radiologia.concat(traumatologia, dental);
 
-document.getElementById("ultima_d").innerHTML =
-  "<b>Último paciente: </b>" +
-  "<br>" +
-  ultima.paciente +
-  "<br>" +
-  ultima.rut +
-  " - " +
-  ultima.prevision;
+for (let i = 0; i < total_pacientes.length; i++) {
+  document.getElementById("lista_total").innerHTML +=
+    "<li class=" +
+    "chao" +
+    ">" +
+    total_pacientes[i].paciente +
+    "<br>" +
+    "</li>";
+}
 
+//
+//
+//
+//
+// let nombres = dental.map(item => item.paciente);
+// let horas = dental.map(item => item.hora);
+// let horaString = horas.join("-");
+// let nameString = nombres.join("-");
+// document.getElementById("dental_lista").innerHTML =
+//   nombres.join("-") + horas.join("-");
+//
+//
 // document.write(radiologia[0].especialista);
 // document.getElementById("ejemplo").innerHTML = radiologia[0].paciente;
