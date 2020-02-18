@@ -13,17 +13,37 @@ h1 {
 
 .especialidades {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.radiologia,
+.lista_especialidades {
+  background-color: white;
+  width: 31%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
+}
+
 .traumatologia,
 .dental {
   background-color: white;
-  width: 30%;
-  height: 320px;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 20px;
   box-sizing: border-box;
+}
+ul {
+  padding-left: 25px;
+}
+.hola {
+  padding: 5px 0;
+}
+.chao {
+  padding: 3px 0;
+}
+.tram {
+  padding: 3px 0;
 }
 
 h2 {
